@@ -1,0 +1,11 @@
+---
+- name: Hello World Example Playbook
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+  tasks:
+    - name: Print a simple message
+      ansible.builtin.debug:
+        msg: "Hello, World! This is my first Ansible Playbook.
+
