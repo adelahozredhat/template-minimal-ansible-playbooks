@@ -1,58 +1,78 @@
 ---
-# Dependency management (download roles/collections)
+# molecule/default/molecule.yml
 dependency:
   name: galaxy
-  options:
-    ignore-certs: false
-    ignore-errors: false
-    role-file: requirements.yml
-    requirements-file: requirements.yml
-
-
-ansible:
-  cfg:
-    defaults:
-      host_key_checking: false
-      verbosity: 1
-    ssh_connection:
-      pipelining: true
-  env:
-    ANSIBLE_FORCE_COLOR: "1"
-    ANSIBLE_LOAD_CALLBACK_PLUGINS: "1"
-
-  executor:
-    backend: ansible-playbook
-    args:
-      ansible_playbook:
-        - --diff
-        - --force-handlers
-        - --inventory=/path/to/inventory.yml
-      ansible_navigator:
-        - --mode stdout
-        - --pull-policy missing
-        - --execution-environment-image ghcr.io/ansible/community-ansible-dev-tools:latest
-
-  playbooks:
-    create: create.yml
-    converge: ../../playbook.yml
-    destroy: destroy.yml
-    cleanup: cleanup.yml
-    prepare: prepare.yml
-    side_effect: side_effect.yml
-    verify: verify.yml
-
-scenario:
+driver:
+  # The 'delegated' driver is typically used for localhost execution
   name: default
-  test_sequence:
-    - dependency
-    - cleanup
-    - destroy
-    - syntax
-    - create
-    - prepare
-    - converge
-    - idempotence
-    - side_effect
-    - verify
-    - cleanup
-    - destroy
+provisioner:
+  name: ansible
+platforms:
+  # Define a single host named 'localhost' with 'local' connection
+  - name: localhost
+    ansible_connection: local
+    # Set the group for the test host
+    groups:
+      - all
+    # No image needed since it runs on the machine where molecule is executed
+verifier:
+  name: ansible
+
+# ---
+# # Dependency management (download roles/collections)
+# dependency:
+#   name: galaxy
+#   options:
+#     ignore-certs: false
+#     ignore-errors: false
+#     role-file: requirements.yml
+#     requirements-file: requirements.yml
+
+
+# ansible:
+#   cfg:
+#     defaults:
+#       host_key_checking: false
+#       verbosity: 1
+#     ssh_connection:
+#       pipelining: true
+#   env:
+#     ANSIBLE_FORCE_COLOR: "1"
+#     ANSIBLE_LOAD_CALLBACK_PLUGINS: "1"
+
+#   executor:
+#     backend: ansible-playbook
+#     args:
+#       ansible_playbook:
+#         - --diff
+#         - --force-handlers
+#         - --inventory=/path/to/inventory.yml
+#       ansible_navigator:
+#         - --mode stdout
+#         - --pull-policy missing
+#         - --execution-environment-image ghcr.io/ansible/community-ansible-dev-tools:latest
+
+#   playbooks:
+#     create: create.yml
+#     converge: ../../playbook.yml
+#     destroy: destroy.yml
+#     cleanup: cleanup.yml
+#     prepare: prepare.yml
+#     side_effect: side_effect.yml
+#     verify: verify.yml
+
+# scenario:
+#   name: default
+#   test_sequence:
+#     - dependency
+#     - cleanup
+#     - destroy
+#     - syntax
+#     - create
+#     - prepare
+#     - converge
+#     - idempotence
+#     - side_effect
+#     - verify
+#     - cleanup
+#     - destroy
