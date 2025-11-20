@@ -7,9 +7,9 @@ components:
     container:
       image: ghcr.io/ansible/ansible-devspaces@sha256:f833103c12adf6ecb3cc8245dbc2d852ec5025c8c487d601b96995ea8783fb2f
       memoryRequest: 256M
-      memoryLimit: 6Gi
+      memoryLimit: 4Gi
       cpuRequest: 250m
-      cpuLimit: 2000m
+      cpuLimit: 1000m
       args: ['tail', '-f', '/dev/null']
       env:
         - name: 'ANSIBLE_COLLECTIONS_PATH'
