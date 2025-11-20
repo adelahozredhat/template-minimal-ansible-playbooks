@@ -14,3 +14,36 @@ components:
       env:
         - name: 'ANSIBLE_COLLECTIONS_PATH'
           value: '~/.ansible/collections:/usr/share/ansible/collections:/projects/ansible-devspaces-demo/collections'
+
+commands:
+
+  - id: yamlint
+    exec:
+      label: "yamlint"
+      commandLine: 'yamllint . --no-warnings -d "{extends: default, rules: {line-length: {max: 150}}}"'
+      workingDir: ${PROJECTS_ROOT}
+      group:
+        kind: run
+        isDefault: true
+      component: tooling-container
+
+  - id: ansible-lint
+    exec:
+      label: "ansible-lint"
+      commandLine: 'ansible-lint --nocolor'
+      workingDir: ${PROJECTS_ROOT}
+      group:
+        kind: run
+        isDefault: true
+      component: tooling-container
+
+  - id: molecule
+    exec:
+      label: "ansible-lint"
+      commandLine: 'ansible-lint --nocolor'
+      workingDir: ${PROJECTS_ROOT}
+      group:
+        kind: run
+        isDefault: true
+      component: tooling-container
+

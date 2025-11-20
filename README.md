@@ -9,3 +9,8 @@ For more information, please visit:
 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
 https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+
+
+To execute molecule test in devspaces use previous and open another terminal:
+python3 -m ensurepip --upgrade
+python3 -m pip install molecule==6.0.3
