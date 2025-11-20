@@ -1,4 +1,5 @@
 ---
 # Purpose: bring the instance to the desired state by running the role under test.
 # Molecule calls this playbook with `molecule converge`.
-- import_playbook: ../../playbook.yml
+- name: Import playbook to testing
+  import_playbook: ../../playbook.yml
