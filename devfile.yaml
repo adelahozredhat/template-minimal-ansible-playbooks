@@ -46,4 +46,3 @@ commands:
         kind: run
         isDefault: true
       component: tooling-container
-
