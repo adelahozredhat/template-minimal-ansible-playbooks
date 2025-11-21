@@ -1,0 +1,12 @@
+include *.yaml
+include LICENSE
+include README.md
+include inventory
+include *.yml
+include MANIFEST.in
+recursive-include casc *
+recursive-include changelogs *
+recursive-include collections *
+recursive-include group_vars *
+recursive-include molecule *
+recursive-include roles *
