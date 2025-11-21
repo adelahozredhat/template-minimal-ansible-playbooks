@@ -1,6 +1,6 @@
 ---
 controller_projects:
-  - name: "Project Template"
+  - name: "Project Template New"
     description: ""
     organization: "Default"
     scm_type: "git"

@@ -1,6 +1,6 @@
 ---
 controller_templates:
-  - name: "Job Template"
+  - name: "Job Template New"
     description: ""
     organization: "Default"
     project: "Project Template"
